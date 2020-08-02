@@ -1,0 +1,47 @@
+{
+  "GlobalConfiguration": {
+
+  },
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/{controller}/{action}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5331
+        }
+      ],
+      "UpstreamPathTemplate": "/Catalog/{controller}/{action}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      //授权信息
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Api_Catalog",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/{controller}/{everything}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5332
+        }
+      ],
+      "UpstreamPathTemplate": "/Ordering/{controller}/{everything}",
+      "UpstreamHttpMethod": [ "Get", "Post" ],
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+      //授权信息
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Api_Ordering",
+        "AllowedScopes": []
+      }
+    }
+  ]
+}
