@@ -27,23 +27,24 @@ namespace ApiGateway.Ocelot
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddAuthentication()
-              .AddJwtBearer("Api_Catalog", i =>
-              {
-                  i.Audience = "Api_Catalog";
-                  i.Authority = "http://localhost:5333";
-                  i.RequireHttpsMetadata = false;
-              }).AddJwtBearer("Api_Ordering", y =>
-              {
-                  //资源名称，跟认证服务中注册的资源列表名称中的apiResource一致
-                  y.Audience = "Api_Ordering";
-                  //配置授权认证的地址
-                  y.Authority = "http://localhost:5333";
-                  //是否启用https
-                  y.RequireHttpsMetadata = false;
-              });
+            //services.AddAuthentication()
+            //  .AddJwtBearer("Api_Catalog", i =>
+            //  {
+            //      i.Audience = "Api_Catalog";
+            //      i.Authority = "http://localhost:5333";
+            //      i.RequireHttpsMetadata = false;
+            //  }).AddJwtBearer("Api_Ordering", y =>
+            //  {
+            //      //资源名称，跟认证服务中注册的资源列表名称中的apiResource一致
+            //      y.Audience = "Api_Ordering";
+            //      //配置授权认证的地址
+            //      y.Authority = "http://localhost:5333";
+            //      //是否启用https
+            //      y.RequireHttpsMetadata = false;
+            //  });
 
             services.AddOcelot();//注入Ocelot服务
+                                 //.AddSingletonDefinedAggregator<FakeDefinedAggregator>();
 
             services.AddControllers();
         }
